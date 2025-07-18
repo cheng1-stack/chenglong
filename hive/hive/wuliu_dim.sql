@@ -18,7 +18,7 @@ create external table dim_complex_full(
 ) comment '小区维度表'
   partitioned by (`dt` string comment '统计日期')
   stored as orc
-  location '/warehouse/tms/dim/dim_complex_full'
+  location '/bigdata_warehouse/tms02/dim/dim_complex_full'
   tblproperties('orc.compress'='snappy');
 
 -- 2. 机构维度表
@@ -37,7 +37,7 @@ create external table dim_organ_full(
 ) comment '机构维度表'
   partitioned by (`dt` string comment '统计日期')
   stored as orc
-  location '/warehouse/tms/dim/dim_organ_full'
+  location '/bigdata_warehouse/tms02/dim/dim_organ_full'
   tblproperties('orc.compress'='snappy');
 
 -- 3. 地区维度表
@@ -52,7 +52,7 @@ create external table dim_region_full(
 ) comment '地区维度表'
     partitioned by (`dt` string comment '统计日期')
     stored as orc
-    location '/warehouse/tms/dim/dim_region_full'
+    location '/bigdata_warehouse/tms02/dim/dim_region_full'
     tblproperties('orc.compress'='snappy');
 
 -- 4. 快递员维度表
@@ -71,7 +71,7 @@ create external table dim_express_courier_full(
 ) comment '快递员维度表'
   partitioned by (`dt` string comment '统计日期')
   stored as orc
-  location '/warehouse/tms/dim/dim_express_courier_full'
+  location '/bigdata_warehouse/tms02/dim/dim_express_courier_full'
   tblproperties('orc.compress'='snappy');
 
 -- 5. 班次维度表
@@ -104,7 +104,7 @@ create external table dim_shift_full(
 ) comment '班次维度表'
     partitioned by (`dt` string comment '统计周期')
     stored as orc
-    location '/warehouse/tms/dim/dim_shift_full'
+    location '/bigdata_warehouse/tms02/dim/dim_shift_full'
     tblproperties('orc.compress'='snappy');
 
 -- 6. 司机维度表
@@ -127,7 +127,7 @@ create external table dim_truck_driver_full(
 ) comment '司机维度表'
     partitioned by (`dt` string comment '统计日期')
     stored as orc
-    location '/warehouse/tms/dim/dim_truck_driver_full'
+    location '/bigdata_warehouse/tms02/dim/dim_truck_driver_full'
     tblproperties('orc.compress'='snappy');
 
 -- 7. 卡车维度表
@@ -171,7 +171,7 @@ create external table dim_truck_full(
 ) comment '卡车维度表'
     partitioned by (`dt` string comment '统计日期')
     stored as orc
-    location '/warehouse/tms/dim/dim_truck_full'
+    location '/bigdata_warehouse/tms02/dim/dim_truck_full'
     tblproperties('orc.compress'='snappy');
 
 -- 8. 用户拉链表
@@ -193,7 +193,7 @@ create external table dim_user_zip(
 ) comment '用户拉链表'
     partitioned by (`dt` string comment '统计日期')
     stored as orc
-    location '/warehouse/tms/dim/dim_user_zip'
+    location '/bigdata_warehouse/tms02/dim/dim_user_zip'
     tblproperties('orc.compress'='snappy');
 
 -- 9. 用户地址拉链表
@@ -214,5 +214,5 @@ create external table dim_user_address_zip(
 ) comment '用户地址拉链表'
     partitioned by (`dt` string comment '统计日期')
     stored as orc
-    location '/warehouse/tms/dim/dim_user_address_zip'
+    location '/bigdata_warehouse/tms02/dim/dim_user_address_zip'
     tblproperties('orc.compress'='snappy');

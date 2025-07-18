@@ -1,5 +1,6 @@
 -- 1. dwd_trade_order_detail_inc
 -- 1.1 首日装载
+set hive.exec.mode.local.auto=True;
 use tms02;
 set hive.exec.dynamic.partition.mode=nonstrict;
 insert overwrite table tms02.dwd_trade_order_detail_inc
@@ -609,15 +610,13 @@ from (select id,
              concat(substr(sender_name, 1, 1), '*')                                    sender_name,
              cargo_num,
              amount,
-             date_format(from_utc_timestamp(
-                                 cast(estimate_arrive_time as bigint), 'UTC'),
-                         'yyyy-MM-dd HH:mm:ss')                                              estimate_arrive_time,
+             date_format(from_utc_timestamp( cast(estimate_arrive_time as bigint),'UTC'),'yyyy-MM-dd HH:mm:ss')   estimate_arrive_time,
              distance,
              concat(substr(update_time, 1, 10), ' ', substr(update_time, 12, 8)) cancel_time
       from ods_order_info
       where dt = '2025-07-13'
         and is_deleted = '0'
-        and status = '60999') info
+        and status = '60050') info
      on cargo.order_id = info.id
          left join
      (select id,
@@ -1659,9 +1658,8 @@ from (select id,
         and status <> '60010'
         and status <> '60020'
         and status <> '60030'
-        and status <> '60040'
         and status <> '60050'
-        and status <> '60999') info
+    ) info
      on cargo.order_id = info.id
          left join
      (select id,
@@ -2020,9 +2018,7 @@ from (select id,
         and status <> '60020'
         and status <> '60030'
         and status <> '60040'
-        and status <> '60050'
-        and status <> '60060'
-        and status <> '60999') info
+        ) info
      on cargo.order_id = info.id
          left join
      (select id,
@@ -2382,10 +2378,7 @@ from (select id,
         and status <> '60020'
         and status <> '60030'
         and status <> '60040'
-        and status <> '60050'
-        and status <> '60060'
-        and status <> '60070'
-        and status <> '60999') info
+        ) info
      on cargo.order_id = info.id
          left join
      (select id,
@@ -3207,3 +3200,10 @@ where dt = '2025-07-13'
   and outbound_time is null
   and outbound_time is not null
   and is_deleted = '0';
+
+
+
+SELECT   status
+       FROM tms02.ods_order_info
+       ORDER BY status DESC
+       LIMIT 500
